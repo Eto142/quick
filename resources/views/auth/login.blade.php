@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | QuickNest Loans</title>
     <link rel="stylesheet" href="auth/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <!-- Include Toastr & jQuery (make sure these are above the script block below) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <style>
         /* Additional styles for login page */
         .login-container {
@@ -133,24 +138,13 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <img src="assets/logo.png" alt="QuickNest Loans">
-                <h1>QuickNest</h1>
+                <h1>QuickNest Loan</h1>
             </a>
-            <nav class="desktop-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="loans.html">Loans</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html" class="cta-button">Login</a></li>
-                </ul>
-            </nav>
-            <button class="mobile-nav-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </header>
+
 
     <!-- Login Form -->
     <main class="container">
@@ -192,72 +186,15 @@
   
 
     <!-- Footer -->
-    <footer>
-        <div class="container footer-container">
-            <div class="footer-col">
-                <h3>QuickNest Loans</h3>
-                <p>Providing fast, affordable loan solutions since 2012. We're committed to helping you achieve your financial goals.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="loans.html">Loan Products</a></li>
-                    <li><a href="reviews.html">Customer Reviews</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="{{url('register')}}">Register</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Loan Products</h3>
-                <ul>
-                    <li><a href="loans.html#personal">Personal Loans</a></li>
-                    <li><a href="loans.html#business">Business Loans</a></li>
-                    <li><a href="loans.html#agriculture">Agriculture Loans</a></li>
-                    <li><a href="loans.html#mortgage">Mortgage Loans</a></li>
-                    <li><a href="loans.html#auto">Auto Loans</a></li>
-                    <li><a href="loans.html#education">Education Loans</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Contact Us</h3>
-                <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> 123 Finance Street, Suite 200</li>
-                    <li><i class="fas fa-city"></i> New York, NY 10001</li>
-                    <li><i class="fas fa-phone-alt"></i> (800) 123-4567</li>
-                    <li><i class="fas fa-envelope"></i> support@QuickNest.com</li>
-                    <li><i class="fas fa-clock"></i> Mon-Fri: 8am-8pm ET</li>
-                    <li><i class="fas fa-clock"></i> Sat: 9am-5pm ET</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2023 QuickNest Financial Services. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Licenses</a></p>
-            <p>QuickNest is an equal opportunity lender. Loans subject to credit approval. Rates and terms vary based on creditworthiness.</p>
-        </div>
-    </footer>
 
 
 
-    <script>
+   <script>
 document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
-    
-    // CSRF token for Laravel
     const token = document.querySelector('input[name="_token"]').value;
 
     try {
@@ -273,24 +210,36 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         const data = await response.json();
 
         if (response.ok && data.success) {
-            alert(data.message); // Optional
-            window.location.href = data.redirect;
+            toastr.success(data.message || 'Login successful! Redirecting...');
+            setTimeout(() => {
+                window.location.href = data.redirect || "{{ route('user.home') }}";
+            }, 1500);
         } else {
-            // Handle validation errors
-            let errorMsg = data.message || "Login failed.";
+            let errorMsg = data.message || 'Login failed.';
             if (data.errors) {
-                for (const field in data.errors) {
-                    errorMsg += `\n- ${data.errors[field].join(", ")}`;
+                for (const key in data.errors) {
+                    if (data.errors.hasOwnProperty(key)) {
+                        toastr.error(data.errors[key][0]);
+                    }
                 }
+            } else {
+                toastr.error(errorMsg);
             }
-            alert(errorMsg);
         }
+
     } catch (error) {
-        alert("Something went wrong. Please try again.");
-        console.error(error);
+        toastr.error("Something went wrong. Please try again.");
+        console.error("Login error:", error);
     }
 });
 </script>
+
+<!-- Toastr CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 

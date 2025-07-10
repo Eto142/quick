@@ -1090,86 +1090,7 @@
 </head>
 <body>
     <div class="dashboard">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">MB</div>
-                <div class="brand-name">My<span>Bank</span></div>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <div class="nav-section">
-                    <div class="nav-section-title">Overview</div>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-chart-line"></i>
-                        Dashboard
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-wallet"></i>
-                        Account Summary
-                    </a>
-                </div>
-                
-                <div class="nav-section">
-                    <div class="nav-section-title">Loans</div>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        My Loans
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-plus-circle"></i>
-                        Apply for Loan
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-calculator"></i>
-                        Loan Calculator
-                    </a>
-                </div>
-                
-                <div class="nav-section">
-                    <div class="nav-section-title">Payments</div>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-credit-card"></i>
-                        Make Payment
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-history"></i>
-                        Payment History
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-calendar-alt"></i>
-                        Schedule Payment
-                    </a>
-                </div>
-                
-                <div class="nav-section">
-                    <div class="nav-section-title">Support</div>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                        Statements
-                    </a>
-                    <a href="#" class="nav-item active">
-                        <i class="fas fa-headset"></i>
-                        Help Center
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-cog"></i>
-                        Settings
-                    </a>
-                </div>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <div class="user-profile">
-                    <div class="user-avatar">SI</div>
-                    <div class="user-info">
-                        <h4>Saviour Iseh</h4>
-                        <p>Premium Member</p>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
+@include('user.navbar')
         <!-- Overlay for mobile -->
         <div class="overlay" id="overlay"></div>
 
@@ -1188,7 +1109,7 @@
                     </div>
                 </div>
                 
-                <div class="header-actions">
+                {{-- <div class="header-actions">
                     <button class="header-btn">
                         <i class="fas fa-search"></i>
                     </button>
@@ -1199,7 +1120,7 @@
                     <button class="header-btn">
                         <i class="fas fa-question-circle"></i>
                     </button>
-                </div>
+                </div> --}}
             </header>
 
             <div class="content">
@@ -1465,7 +1386,7 @@
                         </div>
                         <h3 class="contact-title">Email Support</h3>
                         <p class="contact-description">Send us a detailed message about your inquiry</p>
-                        <div class="contact-info">support@mybank.com</div>
+                        <div class="contact-info">support@quicknestlns.com</div>
                         <div class="contact-hours">Response within 24 hours<br>Monday through Friday</div>
                         <button class="btn btn-secondary">
                             <i class="fas fa-envelope"></i>
@@ -1505,7 +1426,7 @@
         </main>
 
         <!-- Live Chat Widget -->
-        <div class="chat-widget">
+        {{-- <div class="chat-widget">
             <button class="chat-button" id="chatButton">
                 <i class="fas fa-comments"></i>
             </button>
@@ -1528,7 +1449,7 @@
                     <textarea class="chat-input" id="chatInput" placeholder="Type your message..." rows="2"></textarea>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <script>
@@ -1681,7 +1602,7 @@
                 if (btn.textContent.includes('Call Now')) {
                     alert('Calling customer support...');
                 } else if (btn.textContent.includes('Send Email')) {
-                    window.location.href = 'mailto:support@mybank.com';
+                    window.location.href = 'mailto:support@quicknestlns.com';
                 } else if (btn.textContent.includes('Start Chat')) {
                     openChat();
                 } else if (btn.textContent.includes('Create Ticket')) {

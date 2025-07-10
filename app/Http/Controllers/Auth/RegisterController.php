@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -54,9 +55,9 @@ public function register(Request $request)
     try {
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'last_name'  => 'required|string|max:255',
+            'email'      => 'required|email|unique:users,email',
+            'password'   => 'required|string|min:8|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -64,26 +65,29 @@ public function register(Request $request)
         }
 
         $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'first_name' => $request->input('first_name'),
+            'last_name'  => $request->input('last_name'),
+            'email'      => $request->input('email'),
+            'password'   => bcrypt($request->input('password')),
         ]);
 
-        Auth::login($user);
+        Auth::login($user); // Optional: remove if you don’t want auto-login
 
         return response()->json([
             'message' => 'Registration successful!',
-            'redirect' => route('dashboard')
-        ]);
+            'redirect' => route('login') // or use route('login') if you're not auto-logging in
+        ], 200);
 
-    } catch (\Exception $e) {
+    } catch (\Throwable $e) {
+        \Log::error('Registration error: ' . $e->getMessage());
+
         return response()->json([
-            'error' => 'Something went wrong.',
-            'details' => $e->getMessage()
+            'error' => 'Something went wrong. Please try again later.',
+            'details' => config('app.debug') ? $e->getMessage() : null
         ], 500);
     }
 }
+
 
 
 }

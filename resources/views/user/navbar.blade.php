@@ -38,7 +38,7 @@
                 </div>
                 
                 <div class="nav-section">
-                    <div class="nav-section-title">Payments</div>
+                    {{-- <div class="nav-section-title">Payments</div>
                     <a href="#" class="nav-item">
                         <i class="fas fa-credit-card"></i>
                         Make Payment
@@ -51,7 +51,7 @@
                         <i class="fas fa-calendar-alt"></i>
                         Schedule Payment
                     </a>
-                </div>
+                </div> --}}
                 
                 <div class="nav-section">
                     <div class="nav-section-title">Support</div>

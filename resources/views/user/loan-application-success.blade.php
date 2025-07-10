@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application Success | MyBank</title>
+    <title>Application Success | QuickNest Loan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -583,7 +583,7 @@
             </div>
             <h1 class="success-title">Application Submitted Successfully!</h1>
             <p class="success-message">
-                Thank you for choosing MyBank. Your loan application has been received and is being processed. 
+                Thank you for choosing QuickNest Loan. Your loan application has been received and is being processed. 
                 You will receive an email confirmation shortly with your application details.
             </p>
         </div>
@@ -690,11 +690,8 @@
                     <i class="fas fa-print"></i>
                     Print Application
                 </button>
-                <button class="btn btn-success" onclick="downloadPDF()">
-                    <i class="fas fa-download"></i>
-                    Download PDF
-                </button>
-                <a href="index.html" class="btn btn-secondary">
+              
+                <a href="{{ route('user.home') }}" class="btn btn-secondary">
                     <i class="fas fa-home"></i>
                     Back to Dashboard
                 </a>
@@ -704,13 +701,10 @@
             <div class="contact-info">
                 <p class="contact-title">Need help? Contact our support team</p>
                 <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>1-800-MYBANK-1</span>
-                    </div>
+                   
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>support@mybank.com</span>
+                        <span>support@quickNestlns.com</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-clock"></i>
@@ -724,22 +718,13 @@
         <div class="additional-services">
             <h3 class="services-title">While You Wait, Explore Our Services</h3>
             <div class="services-grid">
-                <a href="credit-score.html" class="service-link">
+                <a href="https://www.equifax.com/" class="service-link">
                     <div class="service-icon-small">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <div class="service-text">
                         <div class="service-name">Check Credit Score</div>
                         <div class="service-desc">Free credit monitoring</div>
-                    </div>
-                </a>
-                <a href="#" class="service-link">
-                    <div class="service-icon-small">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <div class="service-text">
-                        <div class="service-name">Loan Calculator</div>
-                        <div class="service-desc">Plan your payments</div>
                     </div>
                 </a>
             </div>
