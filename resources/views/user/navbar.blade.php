@@ -31,10 +31,10 @@
                         My Loans
                     </a>
                    
-                    <a href="#" class="nav-item">
+                    {{-- <a href="#" class="nav-item">
                         <i class="fas fa-calculator"></i>
                         Loan Calculator
-                    </a>
+                    </a> --}}
                 </div>
                 
                 <div class="nav-section">
@@ -59,7 +59,7 @@
                         <i class="fas fa-file-invoice-dollar"></i>
                         Statements
                     </a>
-                    <a href="#" class="nav-item">
+                    <a href="{{route('user.help')}}" class="nav-item">
                         <i class="fas fa-headset"></i>
                         Help Center
                     </a>

@@ -21,4 +21,13 @@ public function ApplyLoan() {
     return view('user.apply');
 
 }
+
+public function HelpCenter() {
+    // Get the currently authenticated user
+       
+    return view('user.help');
+
+}
+
+
 }

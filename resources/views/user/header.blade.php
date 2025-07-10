@@ -8,6 +8,81 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <style>
+
+        .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.header-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: -5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 10px;
+    padding: 2px 5px;
+}
+
+.profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 10;
+    min-width: 150px;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    background: white;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Show dropdown on button click - JS needed */
+.dropdown.open .dropdown-menu {
+    display: block;
+}
+
         :root {
             --primary: #1a5632;
             --primary-light: #2d7d46;
@@ -1203,16 +1278,42 @@
                     </div>
                 </div>
                 
-                <div class="header-actions">
-                    <button class="header-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <button class="header-btn">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">5</span>
-                    </button>
-                    <button class="header-btn">
-                        <i class="fas fa-question-circle"></i>
-                    </button>
-                </div>
+<div class="header-actions">
+    <button class="header-btn">
+        <i class="fas fa-bell"></i>
+        <span class="notification-badge">1</span>
+    </button>
+
+    <!-- Profile Picture with Dropdown -->
+    <div class="dropdown">
+        <button class="header-btn dropdown-toggle">
+            <img src="path-to-profile.jpg" alt="Profile" class="profile-pic">
+        </button>
+        <div class="dropdown-menu">
+            <a href="/profile">Profile</a>
+            <form method="POST" action="/logout">
+                <!-- Include CSRF token if using Laravel or similar -->
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
             </header>
+
+            <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdown = document.querySelector('.dropdown');
+
+        dropdownToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function () {
+            dropdown.classList.remove('open');
+        });
+    });
+</script>
+

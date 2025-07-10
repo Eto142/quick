@@ -8,12 +8,12 @@
                         <div class="quick-actions">
                             <button class="quick-action-btn">
                                 <i class="fas fa-plus"></i>
-                                Make Payment
+                                Apply Loan
                             </button>
-                            <button class="quick-action-btn">
+                            {{-- <button class="quick-action-btn">
                                 <i class="fas fa-download"></i>
                                 Download Statement
-                            </button>
+                            </button> --}}
                             <button class="quick-action-btn">
                                 <i class="fas fa-calculator"></i>
                                 Check Credit Score
@@ -28,7 +28,7 @@
                         <div class="stat-header">
                             <div class="stat-content">
                                 <h4>Total Loan Amount</h4>
-                                <div class="stat-value">$45,000</div>
+                                <div class="stat-value">$0.000</div>
                                 <div class="stat-change positive">
                                     <i class="fas fa-arrow-up"></i>
                                     <span>12% from last year</span>
@@ -44,7 +44,7 @@
                         <div class="stat-header">
                             <div class="stat-content">
                                 <h4>Outstanding Balance</h4>
-                                <div class="stat-value">$28,450</div>
+                                <div class="stat-value">$0.000</div>
                                 <div class="stat-change negative">
                                     <i class="fas fa-arrow-down"></i>
                                     <span>5% from last month</span>
@@ -60,7 +60,7 @@
                         <div class="stat-header">
                             <div class="stat-content">
                                 <h4>Monthly Payment</h4>
-                                <div class="stat-value">$1,250</div>
+                                <div class="stat-value">$0.000</div>
                                 <div class="stat-change neutral">
                                     <i class="fas fa-calendar"></i>
                                     <span>Due July 20, 2025</span>

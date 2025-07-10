@@ -38,7 +38,7 @@ Route::prefix('user')->as('user.')->middleware('auth')->group(function () {
     Route::get('/alltransactions', [DashboardController::class, 'Alltransactions'])->name('transactions'); // user.transactions
     Route::get('/apply', [DashboardController::class, 'ApplyLoan'])->name('apply'); // user.alert
     Route::get('/setting', [DashboardController::class, 'Setting'])->name('setting'); // user.setting
-    Route::get('/help', [DashboardController::class, 'Help'])->name('help'); // user.help
+    Route::get('/help', [DashboardController::class, 'HelpCenter'])->name('help'); // user.help
     Route::post('/update-setting', [DashboardController::class, 'updateSettings'])->name('settings'); // user.settings
 
 
@@ -50,7 +50,7 @@ Route::get('/loan-application', [LoanApplicationController::class, 'create'])->n
 Route::get('/loan', [LoanApplicationController::class, 'LoanHistory'])->name('loan');
 Route::get('/profile', [LoanApplicationController::class, 'Profile'])->name('profile');
 // Route::post('/loan-application', [LoanApplicationController::class, 'store'])->name('loan.application.submit');
-Route::get('/loan-application/success/{id}', [LoanApplicationController::class, 'success'])->name('loan.application.success');
+Route::get('/loan-applicationsuccess', [LoanApplicationController::class, 'success'])->name('loan.application.success');
 });
 
 

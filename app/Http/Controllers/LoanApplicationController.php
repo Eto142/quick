@@ -58,13 +58,14 @@ class LoanApplicationController extends Controller
         // Send email notification
         // Mail::to($request->email)->send(new LoanApplicationSubmitted($application));
 
-        return redirect()->back()->with('success', 'Your loan application has been submitted successfully!');
+       return redirect()->route('user.loan.application.success')->with('success', 'Your loan application has been submitted successfully!');
+
     }
 
     // Show success page
-    public function success($id)
+    public function success()
     {
-        $application = LoanApplication::findOrFail($id);
-        return view('user.loan-application-success', compact('application'));
+       
+        return view('user.loan-application-success');
     }
 }
