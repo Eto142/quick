@@ -1,4 +1,5 @@
 @include('user.header')
+
             <div class="content">
                 <!-- Welcome Section -->
                 <div class="welcome-section">
@@ -6,18 +7,16 @@
                         <h2 class="welcome-title">Welcome back, {{ Auth::user()->first_name }}!</h2>
                         <p class="welcome-subtitle">Here's an overview of your loan portfolio and recent activities.</p>
                         <div class="quick-actions">
-                            <button class="quick-action-btn">
-                                <i class="fas fa-plus"></i>
-                                Apply Loan
-                            </button>
-                            {{-- <button class="quick-action-btn">
-                                <i class="fas fa-download"></i>
-                                Download Statement
-                            </button> --}}
-                            <button class="quick-action-btn">
-                                <i class="fas fa-calculator"></i>
-                                Check Credit Score
-                            </button>
+
+                            <a href="{{route('user.apply')}}" class="quick-action-btn" style="text-decoration: none;">
+                            <i class="fas fa-plus"></i>
+                             Apply Loan
+                            </a>
+
+                            <a href="https://www.equifax.com/" class="quick-action-btn" style="text-decoration: none;">
+                           <i class="fas fa-calculator"></i>
+                             Check Credit Score
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -28,10 +27,10 @@
                         <div class="stat-header">
                             <div class="stat-content">
                                 <h4>Total Loan Amount</h4>
-                                <div class="stat-value">$0.000</div>
+                                <div class="stat-value">$0.00</div>
                                 <div class="stat-change positive">
                                     <i class="fas fa-arrow-up"></i>
-                                    <span>12% from last year</span>
+                                    {{-- <span>12% from last year</span> --}}
                                 </div>
                             </div>
                             <div class="stat-icon primary">
@@ -44,10 +43,10 @@
                         <div class="stat-header">
                             <div class="stat-content">
                                 <h4>Outstanding Balance</h4>
-                                <div class="stat-value">$0.000</div>
+                                <div class="stat-value">$0.00</div>
                                 <div class="stat-change negative">
                                     <i class="fas fa-arrow-down"></i>
-                                    <span>5% from last month</span>
+                                    {{-- <span>5% from last month</span> --}}
                                 </div>
                             </div>
                             <div class="stat-icon warning">
@@ -60,10 +59,10 @@
                         <div class="stat-header">
                             <div class="stat-content">
                                 <h4>Monthly Payment</h4>
-                                <div class="stat-value">$0.000</div>
+                                <div class="stat-value">$0.00</div>
                                 <div class="stat-change neutral">
                                     <i class="fas fa-calendar"></i>
-                                    <span>Due July 20, 2025</span>
+                                    {{-- <span>Due July 20, 2025</span> --}}
                                 </div>
                             </div>
                             <div class="stat-icon success">

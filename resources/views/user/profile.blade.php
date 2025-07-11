@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings | MyBank</title>
+    <title>Settings | QuickNest</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -948,84 +948,7 @@
 <body>
     <div class="dashboard">
         <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">MB</div>
-                <div class="brand-name">My<span>Bank</span></div>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <div class="nav-section">
-                    <div class="nav-section-title">Overview</div>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-chart-line"></i>
-                        Dashboard
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-wallet"></i>
-                        Account Summary
-                    </a>
-                </div>
-                
-                <div class="nav-section">
-                    <div class="nav-section-title">Loans</div>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        My Loans
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-plus-circle"></i>
-                        Apply for Loan
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-calculator"></i>
-                        Loan Calculator
-                    </a>
-                </div>
-                
-                <div class="nav-section">
-                    <div class="nav-section-title">Payments</div>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-credit-card"></i>
-                        Make Payment
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-history"></i>
-                        Payment History
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-calendar-alt"></i>
-                        Schedule Payment
-                    </a>
-                </div>
-                
-                <div class="nav-section">
-                    <div class="nav-section-title">Support</div>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                        Statements
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-headset"></i>
-                        Help Center
-                    </a>
-                    <a href="#" class="nav-item active">
-                        <i class="fas fa-cog"></i>
-                        Settings
-                    </a>
-                </div>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <div class="user-profile">
-                    <div class="user-avatar">SI</div>
-                    <div class="user-info">
-                        <h4>Saviour Iseh</h4>
-                        <p>Premium Member</p>
-                    </div>
-                </div>
-            </div>
-        </aside>
+@include('user.navbar')
 
         <!-- Overlay for mobile -->
         <div class="overlay" id="overlay"></div>
@@ -1084,14 +1007,14 @@
                             <i class="fas fa-eye-slash"></i>
                             Privacy
                         </div>
-                        <div class="settings-nav-item" data-section="connected">
+                        {{-- <div class="settings-nav-item" data-section="connected">
                             <i class="fas fa-link"></i>
                             Connected Accounts
-                        </div>
-                        <div class="settings-nav-item" data-section="billing">
+                        </div> --}}
+                        {{-- <div class="settings-nav-item" data-section="billing">
                             <i class="fas fa-credit-card"></i>
                             Billing
-                        </div>
+                        </div> --}}
                     </div>
 
                     <!-- Settings Content -->
@@ -1126,22 +1049,22 @@
                                 <div class="form-grid">
                                     <div class="form-group">
                                         <label class="form-label">First Name</label>
-                                        <input type="text" class="form-input" value="Saviour" placeholder="Enter your first name">
+                                        <input type="text" class="form-input" value="{{ Auth::user()->first_name }}" placeholder="Enter your first name">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">Last Name</label>
-                                        <input type="text" class="form-input" value="Iseh" placeholder="Enter your last name">
+                                        <input type="text" class="form-input" value="{{ Auth::user()->last_name }}" placeholder="Enter your last name">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">Email Address</label>
-                                        <input type="email" class="form-input" value="saviour.iseh@example.com" placeholder="Enter your email">
+                                        <input type="email" class="form-input" value="{{ Auth::user()->email }}" placeholder="Enter your email">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-input" value="+1 (555) 123-4567" placeholder="Enter your phone number">
+                                        <input type="tel" class="form-input" value="{{ Auth::user()->first_name }}" placeholder="Enter your phone number">
                                     </div>
                                     
                                     <div class="form-group">
@@ -1206,89 +1129,48 @@
                         </div>
 
                         <!-- Security Settings -->
-                        <div class="settings-section" data-section="security">
-                            <div class="section-header">
-                                <h2 class="section-title">Security Settings</h2>
-                                <p class="section-description">Manage your account security and authentication methods</p>
-                            </div>
+                       <div class="settings-section" data-section="security">
+    <div class="section-header">
+        <h2 class="section-title">Change Password</h2>
+        <p class="section-description">Update your password to keep your account secure</p>
+    </div>
 
-                            <div class="alert alert-success">
-                                <i class="fas fa-shield-check"></i>
-                                Your account security is strong. Keep it that way by regularly updating your password.
-                            </div>
+    <div class="alert alert-success">
+        <i class="fas fa-shield-check"></i>
+        Your password is strong. We recommend updating it regularly.
+    </div>
 
-                            <div class="security-item">
-                                <div class="security-info">
-                                    <h4 class="security-title">Password</h4>
-                                    <p class="security-description">Last changed 3 months ago</p>
-                                </div>
-                                <div class="security-status enabled">
-                                    <i class="fas fa-check-circle"></i>
-                                    Strong
-                                </div>
-                                <button class="btn btn-outline btn-sm">Change Password</button>
-                            </div>
+    <form>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="form-label">Current Password</label>
+                                        <input type="password" class="form-input" value="" placeholder="Enter your Current Password">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">New Password</label>
+                                        <input type="password" class="form-input" value="" placeholder="Enter your New Password">
+                                    </div>
 
-                            <div class="security-item">
-                                <div class="security-info">
-                                    <h4 class="security-title">Two-Factor Authentication</h4>
-                                    <p class="security-description">Add an extra layer of security to your account</p>
-                                </div>
-                                <div class="security-status enabled">
-                                    <i class="fas fa-check-circle"></i>
-                                    Enabled
-                                </div>
-                                <button class="btn btn-outline btn-sm">Manage 2FA</button>
-                            </div>
+                                    <div class="form-group">
+                                        <label class="form-label"> Confirm New Password</label>
+                                        <input type="password" class="form-input" value="" placeholder="Enter your last name">
+                                    </div>
+    
 
-                            <div class="security-item">
-                                <div class="security-info">
-                                    <h4 class="security-title">Login Alerts</h4>
-                                    <p class="security-description">Get notified when someone logs into your account</p>
+                                <div class="section-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i>
+                                        Update Password
+                                    </button>
+                                    <button type="button" class="btn btn-secondary">
+                                        <i class="fas fa-undo"></i>
+                                        Reset
+                                    </button>
                                 </div>
-                                <div class="security-status enabled">
-                                    <i class="fas fa-check-circle"></i>
-                                    Enabled
-                                </div>
-                                <div class="toggle-switch active" data-setting="login-alerts"></div>
-                            </div>
-
-                            <div class="security-item">
-                                <div class="security-info">
-                                    <h4 class="security-title">Session Management</h4>
-                                    <p class="security-description">View and manage your active sessions</p>
-                                </div>
-                                <div class="security-status">
-                                    <i class="fas fa-info-circle"></i>
-                                    3 Active Sessions
-                                </div>
-                                <button class="btn btn-outline btn-sm">View Sessions</button>
-                            </div>
-
-                            <div class="security-item">
-                                <div class="security-info">
-                                    <h4 class="security-title">Security Questions</h4>
-                                    <p class="security-description">Set up security questions for account recovery</p>
-                                </div>
-                                <div class="security-status disabled">
-                                    <i class="fas fa-exclamation-circle"></i>
-                                    Not Set
-                                </div>
-                                <button class="btn btn-primary btn-sm">Set Up</button>
-                            </div>
-
-                            <div class="section-actions">
-                                <button class="btn btn-danger">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                    Sign Out All Devices
-                                </button>
-                                <button class="btn btn-secondary">
-                                    <i class="fas fa-download"></i>
-                                    Download Security Report
-                                </button>
-                            </div>
+                            </form>
+                                 </div>
                         </div>
-
                         <!-- Notification Settings -->
                         <div class="settings-section" data-section="notifications">
                             <div class="section-header">

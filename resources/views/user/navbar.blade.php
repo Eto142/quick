@@ -17,11 +17,6 @@
                         <i class="fas fa-plus-circle"></i>
                         Apply for Loan
                     </a>
-
-                    {{-- <a href="#" class="nav-item">
-                        <i class="fas fa-wallet"></i>
-                        Account Summary
-                    </a> --}}
                 </div>
                 
                 <div class="nav-section">
@@ -56,9 +51,14 @@
                 <div class="nav-section">
                     <div class="nav-section-title">Support</div>
                     <a href="#" class="nav-item">
+                        <i class="fas fa-wallet"></i>
+                       Messages
+                    </a>
+
+                    {{-- <a href="#" class="nav-item">
                         <i class="fas fa-file-invoice-dollar"></i>
                         Statements
-                    </a>
+                    </a> --}}
                     <a href="{{route('user.help')}}" class="nav-item">
                         <i class="fas fa-headset"></i>
                         Help Center

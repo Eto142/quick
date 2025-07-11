@@ -593,7 +593,7 @@
             <!-- Reference Number -->
             <div class="reference-section">
                 <div class="reference-label">Application Reference Number</div>
-                <div class="reference-value" id="referenceNumber">MB20250110-A7B9</div>
+                <div class="reference-value"> {{ $application->reference_number }}</div>
                 <div class="reference-note">Please save this number for your records</div>
             </div>
 
@@ -610,7 +610,7 @@
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-title-text">Application Submitted</div>
-                        <div class="timeline-description" id="currentTime">January 10, 2025 at 12:14 PM</div>
+                        <div class="timeline-description" id="currentTime">{{ $application->created_at->format('F j, Y - g:i A') }}</div>
                     </div>
                 </div>
 
