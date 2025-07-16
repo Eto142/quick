@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\LoanApplication;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
