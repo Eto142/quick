@@ -119,7 +119,7 @@
     <header>
         <div class="container header-container">
             <a href="/" class="logo">
-                <img src="assets/logo.png" alt="QuickNest Loans">
+                {{-- <img src="assets/logo.png" alt="QuickNest Loans"> --}}
                 <h1>QuickNest Loan</h1>
             </a>
          

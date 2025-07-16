@@ -999,14 +999,14 @@
                             <i class="fas fa-bell"></i>
                             Notifications
                         </div>
-                        <div class="settings-nav-item" data-section="preferences">
+                        {{-- <div class="settings-nav-item" data-section="preferences">
                             <i class="fas fa-sliders-h"></i>
                             Preferences
                         </div>
                         <div class="settings-nav-item" data-section="privacy">
                             <i class="fas fa-eye-slash"></i>
                             Privacy
-                        </div>
+                        </div> --}}
                         {{-- <div class="settings-nav-item" data-section="connected">
                             <i class="fas fa-link"></i>
                             Connected Accounts
@@ -1045,36 +1045,37 @@
                                 </div>
                             </div>
 
-                            <form>
+                            <form method="POST" >
+                               @csrf 
                                 <div class="form-grid">
                                     <div class="form-group">
                                         <label class="form-label">First Name</label>
-                                        <input type="text" class="form-input" value="{{ Auth::user()->first_name }}" placeholder="Enter your first name">
+                                        <input type="text" class="form-input" name="first_name" value="{{ Auth::user()->first_name }}" placeholder="Enter your first name">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">Last Name</label>
-                                        <input type="text" class="form-input" value="{{ Auth::user()->last_name }}" placeholder="Enter your last name">
+                                        <input type="text" class="form-input" name="last_name" value="{{ Auth::user()->last_name }}" placeholder="Enter your last name">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">Email Address</label>
-                                        <input type="email" class="form-input" value="{{ Auth::user()->email }}" placeholder="Enter your email">
+                                        <input type="email" class="form-input" name="email" value="{{ Auth::user()->email }}" placeholder="Enter your email">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-input" value="{{ Auth::user()->first_name }}" placeholder="Enter your phone number">
+                                        <input type="tel" class="form-input" name="phone" value="{{ Auth::user()->first_name }}" placeholder="Enter your phone number">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">Date of Birth</label>
-                                        <input type="date" class="form-input" value="1990-01-15">
+                                        <input type="date" class="form-input" name="dob" value="{{ Auth::user()->dob }}">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">Gender</label>
-                                        <select class="form-select">
+                                        <select class="form-select" name="gender">
                                             <option value="">Select Gender</option>
                                             <option value="male" selected>Male</option>
                                             <option value="female">Female</option>
@@ -1085,33 +1086,27 @@
                                     
                                     <div class="form-group full-width">
                                         <label class="form-label">Address</label>
-                                        <input type="text" class="form-input" value="123 Main Street, Apt 4B" placeholder="Enter your address">
+                                        <input type="text" class="form-input" name="address" value="{{ Auth::user()->address}}" placeholder="Enter your address">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">City</label>
-                                        <input type="text" class="form-input" value="New York" placeholder="Enter your city">
+                                        <input type="text" class="form-input" name="city" value="{{ Auth::user()->city }}" placeholder="Enter your city">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">State</label>
-                                        <select class="form-select">
-                                            <option value="">Select State</option>
-                                            <option value="NY" selected>New York</option>
-                                            <option value="CA">California</option>
-                                            <option value="TX">Texas</option>
-                                            <option value="FL">Florida</option>
-                                        </select>
+                                         <input type="text" class="form-input" name="state" value="{{ Auth::user()->state }}" placeholder="Enter your state">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="form-label">ZIP Code</label>
-                                        <input type="text" class="form-input" value="10001" placeholder="Enter ZIP code">
+                                        <input type="text" class="form-input" name="zip" value="{{ Auth::user()->zip }}" placeholder="Enter ZIP code">
                                     </div>
                                     
                                     <div class="form-group full-width">
                                         <label class="form-label">Bio</label>
-                                        <textarea class="form-textarea" placeholder="Tell us about yourself...">Premium banking customer since 2020. Passionate about financial planning and investment strategies.</textarea>
+                                        <textarea class="form-textarea" name="bio"  value="{{ Auth::user()->bio}}" placeholder="Tell us about yourself..."></textarea>
                                     </div>
                                 </div>
 
@@ -1140,7 +1135,8 @@
         Your password is strong. We recommend updating it regularly.
     </div>
 
-    <form>
+    <form method="POST" action="">
+        @csrf
                                 <div class="form-grid">
                                     <div class="form-group">
                                         <label class="form-label">Current Password</label>
@@ -1291,7 +1287,7 @@
 
                                     <div class="form-group">
                                         <label class="form-label">Currency</label>
-                                        <select class="form-select">
+                                        <select class="form-select" name="currency">
                                             <option value="USD" selected>US Dollar (USD)</option>
                                             <option value="EUR">Euro (EUR)</option>
                                             <option value="GBP">British Pound (GBP)</option>
@@ -1448,7 +1444,7 @@
                                     </div>
                                     <div class="account-details">
                                         <h4>Google Account</h4>
-                                        <p>Connected • saviour.iseh@gmail.com</p>
+                                        <p>Connected • {{ Auth::user()->email }}</p>
                                     </div>
                                 </div>
                                 <button class="btn btn-danger btn-sm">Disconnect</button>

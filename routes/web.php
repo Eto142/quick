@@ -3,8 +3,8 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoanApplicationController;
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\LoanApplicationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,6 +39,7 @@ Route::prefix('user')->as('user.')->middleware('auth')->group(function () {
     Route::get('/apply', [DashboardController::class, 'ApplyLoan'])->name('apply'); // user.alert
     Route::get('/setting', [DashboardController::class, 'Setting'])->name('setting'); // user.setting
     Route::get('/help', [DashboardController::class, 'HelpCenter'])->name('help'); // user.help
+     Route::get('/messages', [DashboardController::class, 'Messages'])->name('messages'); // user.message
     Route::post('/update-setting', [DashboardController::class, 'updateSettings'])->name('settings'); // user.settings
 
 

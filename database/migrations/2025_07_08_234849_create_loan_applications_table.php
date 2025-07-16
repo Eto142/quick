@@ -35,11 +35,11 @@ return new class extends Migration
             $table->string('credit_score_range')->nullable();
             $table->string('banking_relationship')->nullable();
             $table->decimal('loan_amount', 12, 2);
-            $table->integer('loan_term_months');
-            $table->decimal('interest_rate', 5, 2);
-            $table->string('loan_purpose');
+            $table->integer('loan_term_months')->nullable();
+            $table->decimal('interest_rate', 5, 2)->nullable();
+            $table->string('loan_purpose')->nullable();
             $table->text('additional_details')->nullable();
-            $table->string('status')->default('pending');
+            $table->tinyInteger('status')->default(0); // 0 = pending, 1 = approved
             $table->string('reference_number')->unique();
             $table->timestamps();
         });

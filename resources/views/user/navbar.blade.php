@@ -50,7 +50,7 @@
                 
                 <div class="nav-section">
                     <div class="nav-section-title">Support</div>
-                    <a href="#" class="nav-item">
+                    <a href="{{route('user.messages')}}" class="nav-item">
                         <i class="fas fa-wallet"></i>
                        Messages
                     </a>

@@ -38,5 +38,12 @@ public function HelpCenter() {
 
 }
 
+public function Messages() {
+    // Get the currently authenticated user
+       
+    return view('user.messages');
+
+}
+
 
 }

@@ -24,14 +24,25 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="header-title-section">
-                        <h1 class="page-title">Messages</h1>
+                        <h1 class="page-title">Help Center</h1>
                         <div class="breadcrumb">
                             <a href="#">Home</a> / <span>Help Center</span>
                         </div>
                     </div>
                 </div>
                 
-              
+                {{-- <div class="header-actions">
+                    <button class="header-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="header-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <button class="header-btn">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
+                </div> --}}
             </header>
 
             <div class="content">

@@ -1,34 +1,34 @@
 @include('user.header')
             <div class="content">
                 <!-- Welcome Section -->
-                <div class="welcome-section">
+             <div class="welcome-section">
                     <div class="welcome-content">
                         <h2 class="welcome-title">Welcome back, {{ Auth::user()->first_name }}!</h2>
                         <p class="welcome-subtitle">Here's an overview of your loan portfolio and recent activities.</p>
                         <div class="quick-actions">
-                            <button class="quick-action-btn">
-                                <i class="fas fa-plus"></i>
-                                Make Payment
-                            </button>
-                            <button class="quick-action-btn">
-                                <i class="fas fa-download"></i>
-                                Download Statement
-                            </button>
-                            <button class="quick-action-btn">
-                                <i class="fas fa-calculator"></i>
-                                Calculate EMI
-                            </button>
+
+                            <a href="{{route('user.apply')}}" class="quick-action-btn" style="text-decoration: none;">
+                            <i class="fas fa-plus"></i>
+                             Apply Loan
+                            </a>
+
+                            <a href="https://www.equifax.com/" class="quick-action-btn" style="text-decoration: none;">
+                           <i class="fas fa-calculator"></i>
+                             Check Credit Score
+                            </a>
                         </div>
                     </div>
+                
                 </div>
 
 
 
 
                 <!-- Transactions Table -->
+                <!-- Transactions Table -->
                 <div class="transactions-section">
                     <div class="table-header">
-                        <h2 class="table-title">Recent Transactions</h2>
+                        <h2 class="table-title">Loan Transactions</h2>
                         <div class="table-actions">
                             <button class="action-btn">
                                 <i class="fas fa-filter"></i>
@@ -57,59 +57,47 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="transaction-date">Jul 8, 2025</td>
-                                    <td class="transaction-description">Monthly EMI Payment</td>
-                                    <td class="transaction-type">Payment</td>
-                                    <td class="transaction-amount">$1,250.00</td>
-                                    <td><span class="status-badge status-success">Completed</span></td>
-                                    <td><button class="action-button"><i class="fas fa-receipt"></i> Receipt</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="transaction-date">Jun 8, 2025</td>
-                                    <td class="transaction-description">Monthly EMI Payment</td>
-                                    <td class="transaction-type">Payment</td>
-                                    <td class="transaction-amount">$1,250.00</td>
-                                    <td><span class="status-badge status-success">Completed</span></td>
-                                    <td><button class="action-button"><i class="fas fa-receipt"></i> Receipt</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="transaction-date">May 15, 2025</td>
-                                    <td class="transaction-description">Extra Principal Payment</td>
-                                    <td class="transaction-type">Payment</td>
-                                    <td class="transaction-amount">$2,500.00</td>
-                                    <td><span class="status-badge status-success">Completed</span></td>
-                                    <td><button class="action-button"><i class="fas fa-receipt"></i> Receipt</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="transaction-date">May 8, 2025</td>
-                                    <td class="transaction-description">Monthly EMI Payment</td>
-                                    <td class="transaction-type">Payment</td>
-                                    <td class="transaction-amount">$1,250.00</td>
-                                    <td><span class="status-badge status-pending">Processing</span></td>
-                                    <td><button class="action-button" disabled><i class="fas fa-clock"></i> Pending</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="transaction-date">Apr 8, 2025</td>
-                                    <td class="transaction-description">Monthly EMI Payment</td>
-                                    <td class="transaction-type">Payment</td>
-                                    <td class="transaction-amount">$1,250.00</td>
-                                    <td><span class="status-badge status-success">Completed</span></td>
-                                    <td><button class="action-button"><i class="fas fa-receipt"></i> Receipt</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="transaction-date">Mar 15, 2025</td>
-                                    <td class="transaction-description">Loan Disbursement</td>
-                                    <td class="transaction-type">Credit</td>
-                                    <td class="transaction-amount">$45,000.00</td>
-                                    <td><span class="status-badge status-success">Completed</span></td>
-                                    <td><button class="action-button"><i class="fas fa-file-invoice"></i> Details</button></td>
-                                </tr>
-                            </tbody>
+<tbody>
+    @forelse ($loanhistory as $loan)
+        <tr>
+            <td class="transaction-date">{{ \Carbon\Carbon::parse($loan->created_at)->format('M d, Y') }}</td>
+            <td class="transaction-description">{{ $loan->loan_purpose ?? 'Loan Transaction' }}</td>
+            <td class="transaction-type">
+                {{ $loan->loan_type ?? 'Payment' }}
+            </td>
+            <td class="transaction-amount">${{ number_format($loan->loan_amount, 2) }}</td>
+            <td>
+                @if ($loan->status === 'completed')
+                    <span class="status-badge status-success">Completed</span>
+                @elseif ($loan->status === 'pending')
+                    <span class="status-badge status-pending">Processing</span>
+                @else
+                    <span class="status-badge status-failed">Failed</span>
+                @endif
+            </td>
+            <td>
+                @if ($loan->status === 'completed')
+                    <button class="action-button"><i class="fas fa-receipt"></i> Receipt</button>
+                @elseif ($loan->status === 'pending')
+                    <button class="action-button" disabled><i class="fas fa-clock"></i> Pending</button>
+                @else
+                    <button class="action-button" disabled><i class="fas fa-exclamation-circle"></i> N/A</button>
+                @endif
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="6" style="text-align:center;">No transactions found.</td>
+        </tr>
+    @endforelse
+</tbody>
+
                         </table>
                     </div>
                 </div>
+            </div>
+        </main>
+    </div>
             </div>
         </main>
     </div>

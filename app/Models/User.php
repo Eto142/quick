@@ -20,6 +20,15 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
+        'phone',
+        'dob',
+        'address',
+        'zip',
+        'state',
+        'city',
+        'currency',
+        'bio',
+        'gender',
         'email',
         'password',
     ];
@@ -46,4 +55,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+     public function loans()
+{
+    return $this->hasMany(LoanApplication::class);
+}
 }
