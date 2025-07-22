@@ -71,7 +71,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="value fs-3 fw-bold">6</div>
+                            <div class="value fs-3 fw-bold">0</div>
                             <div class="label text-muted">Total Deposits</div>
                         </div>
                         <div class="bg-success bg-opacity-25 p-3 rounded">
@@ -84,7 +84,7 @@
                 </div>
             </div>
         </div>
-        
+{{--         
         <div class="col-md-6 col-lg-3 mb-3">
             <div class="card stat-card bg-warning bg-opacity-10 border-warning">
                 <div class="card-body">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         
         <div class="col-md-6 col-lg-3 mb-3">
             <div class="card stat-card bg-danger bg-opacity-10 border-danger">
@@ -132,8 +132,8 @@
                                 <th>ID</th>
                                 <th>User</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th>Status</th>
+                                {{-- <th>Phone</th>
+                                <th>Status</th> --}}
                                 <th>Joined</th>
                                 <th>Actions</th>
                             </tr>
@@ -144,23 +144,23 @@
                                 <td>#{{ $user->id }}</td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ $user->profile_photo_url ?? 'https://ui-avatars.com/api/?name='.urlencode($user->name).'&background=random' }}" 
-                                             class="rounded-circle me-2" width="32" height="32">
+                                        {{-- <img src="{{ $user->profile_photo_url ?? 'https://ui-avatars.com/api/?name='.urlencode($user->name).'&background=random' }}" 
+                                             class="rounded-circle me-2" width="32" height="32"> --}}
                                         <div>
-                                            <div class="fw-semibold">{{ $user->name }}</div>
-                                            <small class="text-muted">{{ $user->account_type ?? 'Standard' }}</small>
+                                            <div class="fw-semibold">{{ $user->first_name }}</div>
+                                            {{-- <small class="text-muted">{{ $user->account_type ?? 'Standard' }}</small> --}}
                                         </div>
                                     </div>
                                 </td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->phone ?? 'N/A' }}</td>
-                                <td>
+                                {{-- <td>{{ $user->phone ?? 'N/A' }}</td> --}}
+                                {{-- <td>
                                     @if($user->email_verified_at)
                                         <span class="badge bg-success">Verified</span>
                                     @else
                                         <span class="badge bg-warning">Pending</span>
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td>{{ $user->created_at->format('M j, Y') }}</td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group">
