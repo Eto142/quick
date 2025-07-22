@@ -163,7 +163,7 @@
                             <div class="card bg-danger bg-opacity-10 border-danger">
                                 <div class="card-body p-2 text-center">
                                     <h6 class="card-title text-danger mb-1">Outstanding Balance</h6>
-                                    <p class="card-text fw-bold fs-5 mb-0">{{ $userProfile->currency }}{{ $outstanding_balance }}</p>
+                                    <p class="card-text fw-bold fs-5 mb-0">{{ $userProfile->currency }}{{ $outstanding_balance ?? 0}}</p>
                                 </div>
                             </div>
                         </div> 
@@ -171,7 +171,8 @@
                             <div class="card bg-primary bg-opacity-10 border-primary">
                                 <div class="card-body p-2 text-center">
                                     <h6 class="card-title text-primary mb-1">Monthly Payments</h6>
-                                    <p class="card-text fw-bold fs-5 mb-0">{{ $userProfile->currency }}{{ $monthly_payment }}</p>
+                                    <p class="card-text fw-bold fs-5 mb-0">{{ $userProfile->currency }}{{ $monthly_payment ?? 0 }}
+</p>
                                 </div>
                             </div>
                         </div>
