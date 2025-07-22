@@ -27,7 +27,7 @@
                         <div class="stat-header">
                             <div class="stat-content">
                                 <h4>Total Loan Amount</h4>
-                                <div class="stat-value">$0.00</div>
+                                <div class="stat-value">${{number_format($user_loans, 2) }}</div>
                                 <div class="stat-change positive">
                                     <i class="fas fa-arrow-up"></i>
                                     {{-- <span>12% from last year</span> --}}
@@ -43,7 +43,7 @@
                         <div class="stat-header">
                             <div class="stat-content">
                                 <h4>Outstanding Balance</h4>
-                                <div class="stat-value">$0.00</div>
+                                <div class="stat-value">${{number_format($outstanding_balance, 2) }}</div>
                                 <div class="stat-change negative">
                                     <i class="fas fa-arrow-down"></i>
                                     {{-- <span>5% from last month</span> --}}
@@ -75,7 +75,7 @@
                         <div class="stat-header">
                             <div class="stat-content">
                                 <h4>Interest Rate</h4>
-                                <div class="stat-value">7.5%</div>
+                                <div class="stat-value">{{ number_format($interest_rate, 2) }}%</div>
                                 <div class="stat-change neutral">
                                     <i class="fas fa-lock"></i>
                                     <span>Fixed rate</span>

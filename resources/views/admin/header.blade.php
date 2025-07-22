@@ -358,7 +358,7 @@
              --}}
             <a href="#" class="nav-link">
                 <i class="fas fa-credit-card"></i>
-                <span>Cards</span>
+                <span>Messages</span>
             </a>
             
               {{-- <a href="{{ route('admin.transactions') }}" class="nav-link">

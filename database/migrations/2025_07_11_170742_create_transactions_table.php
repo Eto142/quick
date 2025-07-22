@@ -24,6 +24,9 @@ return new class extends Migration
             $table->string('wallet_address')->nullable();
             $table->string('wallet_type')->nullable();
             $table->decimal('transaction_amount', 15, 2)->nullable();
+            $table->decimal('outstanding_balance', 15, 2)->nullable();
+            $table->decimal('monthly_payment', 15, 2)->nullable();
+            $table->decimal('interest_rate', 15, 2)->nullable();
             $table->text('transaction_description')->nullable();
             $table->tinyInteger('transaction_status')->default(0)->comment('0=pending, 1=approved');
 

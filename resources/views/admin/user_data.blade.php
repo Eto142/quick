@@ -17,7 +17,7 @@
             
         </div>
         <div class="d-flex flex-wrap gap-2">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTransactionModal">
+            {{-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTransactionModal">
                 <i class="fas fa-plus-circle me-1"></i> Credit User
             </button>
             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#debitTransactionModal">
@@ -25,26 +25,46 @@
             </button>
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addDepositModal">
                 <i class="fas fa-money-bill-wave me-1"></i> Add Deposit
-            </button>
-            {{-- <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addLoanModal">
-                <i class="fas fa-hand-holding-usd me-1"></i> Add Loan
             </button> --}}
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addLoanModal">
+                <i class="fas fa-hand-holding-usd me-1"></i> Add Loan 
+            </button>
+
+             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addOutstandingBalModal">
+                <i class="fas fa-plus-circle me-1"></i> Add Outstanding Bal
+            </button>
+
+            
+             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMonthlyPayModal">
+                <i class="fas fa-plus-circle me-1"></i> Add  Monthly Pay
+            </button>
+
+             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addInterestRateModal">
+                <i class="fas fa-money-bill-wave me-1"></i> Add Interest Rate 
+            </button>
+
+           
+
+            
+
             <button class="btn btn-info">
                 <i class="fas fa-broom me-1"></i> Clear Account
             </button>
         </div>
     </div>
-    @if(session('status') || session('message'))
+   @if(session('success') || session('status') || session('message'))
     <div class="alert-container">
-        <div class="alert alert-{{ session('status') ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
+        <div class="alert alert-{{ session('success') || session('status') ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
             <div class="alert-content">
                 <div class="alert-icon">
-                    @if(session('status'))
+                    @if(session('success') || session('status'))
+                        {{-- Success Icon --}}
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                             <polyline points="22 4 12 14.01 9 11.01"></polyline>
                         </svg>
                     @else
+                        {{-- Error Icon --}}
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="12" y1="8" x2="12" y2="12"></line>
@@ -53,7 +73,7 @@
                     @endif
                 </div>
                 <div class="alert-text">
-                    {{ session('status') ?? session('message') }}
+                    {{ session('success') ?? session('status') ?? session('message') }}
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -66,6 +86,7 @@
         </div>
     </div>
 @endif
+
 
 
     <div class="row">
@@ -114,7 +135,7 @@
                     
                     <!-- Financial Summary Cards -->
                     <div class="row g-2 mb-3">
-                        <div class="col-6">
+                        {{-- <div class="col-6">
                             <div class="card bg-success bg-opacity-10 border-success">
                                 <div class="card-body p-2 text-center">
                                     <h6 class="card-title text-success mb-1">Total Credits</h6>
@@ -129,34 +150,59 @@
                                     <p class="card-text fw-bold fs-5 mb-0">{{ $userProfile->currency }}{{ $debit_transfers }}</p>
                                 </div>
                             </div>
+                        </div> --}}
+                         <div class="col-6">
+                            <div class="card bg-success bg-opacity-10 border-success">
+                                <div class="card-body p-2 text-center">
+                                    <h6 class="card-title text-success mb-1">Total Loans</h6>
+                                    <p class="card-text fw-bold fs-5 mb-0">{{ $userProfile->currency }}{{ $user_loans }}</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-6">
+                            <div class="card bg-danger bg-opacity-10 border-danger">
+                                <div class="card-body p-2 text-center">
+                                    <h6 class="card-title text-danger mb-1">Outstanding Balance</h6>
+                                    <p class="card-text fw-bold fs-5 mb-0">{{ $userProfile->currency }}{{ $outstanding_balance }}</p>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-6">
+                            <div class="card bg-primary bg-opacity-10 border-primary">
+                                <div class="card-body p-2 text-center">
+                                    <h6 class="card-title text-primary mb-1">Monthly Payments</h6>
+                                    <p class="card-text fw-bold fs-5 mb-0">{{ $userProfile->currency }}{{ $monthly_payment }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                           {{-- <div class="col-6">
                             <div class="card bg-primary bg-opacity-10 border-primary">
                                 <div class="card-body p-2 text-center">
                                     <h6 class="card-title text-primary mb-1">Total Deposits</h6>
                                     <p class="card-text fw-bold fs-5 mb-0">{{ $userProfile->currency }}{{ $user_deposits }}</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-6">
                             <div class="card bg-warning bg-opacity-10 border-warning">
                                 <div class="card-body p-2 text-center">
-                                    <h6 class="card-title text-warning mb-1">Total Loans</h6>
-                                    <p class="card-text fw-bold fs-5 mb-0">{{ $userProfile->currency }}{{ $user_loans }}</p>
+                                    <h6 class="card-title text-warning mb-1">Interest Rate</h6>
+                                    <p class="card-text fw-bold fs-5 mb-0">{{ $interest_rate }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Net Balance -->
-                   <div class="bg-light p-2 rounded mb-0">
+                  {{--  <div class="bg-light p-2 rounded mb-0">
     <div class="d-flex justify-content-between align-items-center">
         <span class="fw-bold">Net Balance:</span>
         <span class="fw-bold fs-5">
             {{ $userProfile->currency }}{{ number_format(($credit_transfers) - ($debit_transfers), 2) }}
         </span>
-    </div>
-</div>
+    </div> 
+</div>--}}
                 </div>
             </div>
         </div>
@@ -188,7 +234,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label text-muted small">Phone Number</label>
-                            <div class="fw-semibold">{{ $userProfile->phone ?? 'Not provided' }}</div>
+                            <div class="fw-semibold">{{ $userProfile->phone ?? 'Not provided yet' }}</div>
                         </div>
 
                         {{-- <div class="col-md-6 mb-3">
@@ -221,19 +267,21 @@
            <div class="card">
     <div class="card-header bg-white p-0">
         <ul class="nav nav-tabs card-header-tabs flex-nowrap overflow-auto" id="activityTabs" role="tablist" style="border-bottom: none;">
+           
+           
             <li class="nav-item" role="presentation">
+                <button class="nav-link px-4 py-3 fw-bold text-warning hover-border-warning" id="loans-tab" data-bs-toggle="tab" data-bs-target="#loans" type="button" role="tab">
+                    <i class="fas fa-hand-holding-usd me-2"></i> Loans
+                </button>
+            </li>
+             <li class="nav-item" role="presentation">
                 <button class="nav-link active px-4 py-3 fw-bold text-primary border-primary" id="transactions-tab" data-bs-toggle="tab" data-bs-target="#transactions" type="button" role="tab" style="border-bottom: 3px solid !important;">
                     <i class="fas fa-exchange-alt me-2"></i> Transactions
                 </button>
             </li>
-            <li class="nav-item" role="presentation">
+             <li class="nav-item" role="presentation">
                 <button class="nav-link px-4 py-3 fw-bold text-success hover-border-success" id="deposits-tab" data-bs-toggle="tab" data-bs-target="#deposits" type="button" role="tab">
                     <i class="fas fa-money-bill-wave me-2"></i> Deposits
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link px-4 py-3 fw-bold text-warning hover-border-warning" id="loans-tab" data-bs-toggle="tab" data-bs-target="#loans" type="button" role="tab">
-                    <i class="fas fa-hand-holding-usd me-2"></i> Loans
                 </button>
             </li>
         </ul>
@@ -575,6 +623,148 @@
     </div>
 </div>
 
+<!-- Add Loan Modal -->
+<div class="modal fade" id="addLoanModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Loan Amount</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('admin.add.loans') }}" method="POST">
+                @csrf
+				<input type="hidden" name="id" value="{{$userProfile->id}}"/>
+                <input type="hidden" name="first_name" value="{{$userProfile->first_name}}"/>
+                <div class="modal-body">
+              <div class="mb-3">
+                  <label class="form-label">Loan Type</label>
+                  <select class="form-control" name="loan_type" required>
+                      <option value="" disabled selected>Select Loan Type</option>
+                      <option value="personal">Personal</option>
+                      <option value="auto">Auto</option>
+                      <option value="home">Home</option>
+                      <option value="business">Business</option>
+                 </select>
+                 </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Amount</label>
+                        <input type="number" class="form-control" name="loan_amount" placeholder="Enter Loan amount" required>
+                    </div>
+
+                   
+                    <div class="mb-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" name="loan_date">
+                    </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Add Loan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Add Outstanding Bal Modal -->
+<div class="modal fade" id="addOutstandingBalModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Outstanding Bal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('admin.add.outstandingloan') }}" method="POST">
+                @csrf
+                <input type="hidden" name="id" value="{{$userProfile->id}}"/>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Amount</label>
+                        <input type="number" class="form-control" name="outstanding_balance" placeholder="Enter Outstanding Bal" required>
+                    </div>
+
+                    {{-- <div class="mb-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" name="date">
+                    </div> --}}
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Add Outstanding Bal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Add InterestRate Modal -->
+<div class="modal fade" id="addInterestRateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Interest Rate</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('admin.add.interestrate') }}" method="POST">
+                @csrf
+                 <input type="hidden" name="id" value="{{$userProfile->id}}"/>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Interest Rate</label>
+                        <input type="number" class="form-control" name="interest_rate" placeholder="Enter Interest Rate" required>
+                    </div>
+
+        
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Add Interest Rate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<!-- Add Monthly Pay Modal -->
+<div class="modal fade" id="addMonthlyPayModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Monthly Pay</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('admin.add.monthlypay') }}" method="POST">
+                @csrf
+                <input type="hidden" name="id" value="{{$userProfile->id}}"/>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Amount</label>
+                        <input type="number" class="form-control" name="monthly_payment" placeholder="Enter Monthly Payment" required>
+                    </div>
+
+                    {{-- <div class="mb-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" name="date">
+                    </div> --}}
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Add Monthly Pay</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
 <!-- Add Deposit Modal -->
 <div class="modal fade" id="addDepositModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -605,40 +795,10 @@
     </div>
 </div>
 
-<!-- Add Loan Modal -->
-<div class="modal fade" id="addLoanModal" tabindex="-1" aria-labelledby="addLoanModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addLoanModalLabel">Add New Loan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="loanForm">
-                    <div class="mb-3">
-                        <label for="loanAmount" class="form-label">Loan Amount</label>
-                        <div class="input-group">
-                            <span class="input-group-text">$</span>
-                            <input type="number" class="form-control" id="loanAmount" placeholder="Enter loan amount" step="0.01" min="0" required>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="loanDate" class="form-label">Loan Date</label>
-                        <input type="date" class="form-control" id="loanDate" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="loanNotes" class="form-label">Notes (Optional)</label>
-                        <textarea class="form-control" id="loanNotes" rows="3" placeholder="Any additional notes about the loan"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-warning" id="submitLoan">Submit Loan</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
 
 
 <!-- Delete User Modal -->

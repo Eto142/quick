@@ -62,6 +62,15 @@ class ManageUserController extends Controller
                                     ->where('status', '1')
                                     ->sum('loan_amount'),
 
+ 'outstanding_balance' => LoanApplication::where('user_id', $id)
+                                            ->value('outstanding_balance'),
+
+                                             'monthly_payment' => LoanApplication::where('user_id', $id)
+                                            ->value('monthly_payment'),
+
+    'interest_rate' => LoanApplication::where('user_id', $id)
+                                      ->sum('interest_rate'),
+
         'user_credit'       => Credit::where('user_id', $id)
                                     ->where('status', '1')
                                     ->sum('amount'),

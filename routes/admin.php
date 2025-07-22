@@ -32,7 +32,11 @@ use Illuminate\Support\Facades\Route;
   Route::delete('/delete/{id}', [ManageUserController::class, 'deleteUser'])->name('delete');
 
       //loan controller
-   Route::get('user_loans', [ManageLoanController::class, 'UsersLoans'])->name('loans');
+    Route::get('user_loans', [ManageLoanController::class, 'UsersLoans'])->name('loans');
+    Route::post('add.loans', [ManageLoanController::class, 'AddUserLoan'])->name('add.loans');
+    Route::post('add.outstandingloan', [ManageLoanController::class, 'AddUserOutstandingBalance'])->name('add.outstandingloan');
+    Route::post('add.interestrate', [ManageLoanController::class, 'AddInterestRate'])->name('add.interestrate');
+    Route::post('add-monthlypay', [ManageLoanController::class, 'AddMonthlyPay'])->name('add.monthlypay');
   
   Route::prefix('admin/mail')->group(function() {
     Route::get('/compose/{user}', [MailController::class, 'compose'])->name('mail.compose');
