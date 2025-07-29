@@ -481,7 +481,7 @@
                                             @foreach($user_loans_list as $loan)
                                             <tr class="{{ \Carbon\Carbon::parse($loan->due_date)->isPast() && $loan->status == '1' ? 'table-danger' : '' }}">
                                                 <td>{{ \Carbon\Carbon::parse($loan->created_at)->format('M d, Y h:i A') }}</td>
-                                                <td class="fw-bold">{{ $loan->amount }}</td>
+                                                <td class="fw-bold">{{ $loan->loan_amount }}</td>
                                                 <td>{{ $loan->interest_rate }}%</td>
                                                 <td>
                                                     @if($loan->due_date)
